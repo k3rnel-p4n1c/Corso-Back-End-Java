@@ -1,17 +1,20 @@
 package modulo4.lampadina;
 
+//Non ha senso dichiararlo all'interno della classe Lampadina
+enum Stato {ACCESA, SPENTA, ROTTA}     //Definisce lo stato della lampadina
+
 public class Lampadina {
-    private String stato;               //"accesa", "spenta", "rotta"
+    private Stato stato;               //"accesa", "spenta", "rotta"
     private static boolean corrente;   //Vale per tutte le lampadine, indica o meno la presenza di corrente - false di default
     private boolean riaccendere_lampadina;    //Nel caso in cui l'alimentazione va via, quando ritorna bisogna ripristinare lo stato
     private int numero_click;   //Dopo 5 click la lampadina si rompe
 
-    public Lampadina(String stato) {
+    public Lampadina(Stato stato) {
         this.stato = stato;
     }
 
     public Lampadina() {
-        this("spenta");     //Richiama il costruttore ad un parametro
+        this(Stato.SPENTA);     //Richiama il costruttore ad un parametro
     }
 
 
@@ -24,12 +27,12 @@ public class Lampadina {
             numero_click++;
 
             if (numero_click == 5)
-                stato = "rotta";
+                stato = Stato.ROTTA;
             else {
-                if (stato.equals("spenta"))
-                    stato = "accesa";
+                if (stato.equals(Stato.SPENTA))
+                    stato = Stato.ACCESA;
                 else
-                    stato = "spenta";
+                    stato = Stato.SPENTA;
             }
         }
     }
@@ -37,17 +40,17 @@ public class Lampadina {
     public void interrompiAlimentazione() {
         corrente = false;
 
-        if (stato.equals("accesa"))
+        if (stato.equals(Stato.ACCESA))
             riaccendere_lampadina = true;
 
-        stato = "spenta";
+        stato = Stato.SPENTA;
     }
 
     public void ripristinaAlimentazione() {
         corrente = true;
 
         if (riaccendere_lampadina)
-            stato = "accesa";
+            stato = Stato.ACCESA;
 
         riaccendere_lampadina = false;
     }

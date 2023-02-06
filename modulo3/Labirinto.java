@@ -11,13 +11,14 @@ public class Labirinto {
         String input;                               //Memorizza l'input dell'utente
         char risposta;                              //Memorizza l'input convertito in un carattere minuscolo
         int[] posizione, arrivo;                    //Memorizza la posizione del giocatore e l'arrivo del labirinto
+        boolean[][] matrice;                        //Matrice parallela al labirinto, marca le posizioni visitate come "true"
         char[][] labirinto = {{'-', '-', 'W', 'W', '-'},
                               {'-', 'W', '-', 'W', '-'},
                               {'P', 'W', '-', 'W', 'W'},
                               {'-', '-', 'W', '-', 'E'},
                               {'W', '-', '-', '-', 'W'}};
 
-        boolean[][] matrice = new boolean[labirinto.length][labirinto[0].length];
+        matrice = new boolean[labirinto.length][labirinto[0].length];
         arrivo = trovaPosizione(labirinto, 'E');       //Coordinate dell'arrivo
         posizione = trovaPosizione(labirinto, 'P');    //Coordinate del giocatore
         stampaLabirinto(labirinto);
@@ -32,6 +33,7 @@ public class Labirinto {
 //            posizione = trovaPosizione(labirinto, 'P');
 //        }
 
+        System.out.println();
         risolviLabirinto(labirinto, matrice, posizione[0], posizione[1]);
     }
 
@@ -132,50 +134,39 @@ public class Labirinto {
 
     //x ed y sono le coordinate della root del labirinto (https://it.wikipedia.org/wiki/Ricerca_in_profondit%C3%A0)
     private static void risolviLabirinto(char[][] labirinto, boolean[][] matrice, int x, int y) {
-        //Controllo se la posizione in cui mi trovo è valida, ovvero si trova all'interno della matrice (labirinto)
-        if (x>=0 && x<labirinto.length && y>=0 && y<labirinto[0].length) {
 
-            //Passo base - controllo se sono arrivato all'uscita
-            if (labirinto[x][y] == 'E') {
-                System.out.println("L'uscita si trova nella posizione di coordinate (" +x+ ", " +y+ ")");
-                return;         //Essendo un metodo void, non restituisce niente (se non il controllo al metodo chiamante)
+        //Passo base - controllo se sono arrivato all'uscita
+        if (labirinto[x][y] == 'E') {
+            System.out.println("L'uscita si trova alle coordinate (" +x+ ", " +y+ ")");
+            return;         //Essendo un metodo void, non restituisce niente (se non il controllo al metodo chiamante)
+        }
+
+        /* Passi ricorsivi - se la posizione attuale del labirinto è una cella vuota, ri-eseguo questo stesso metodo ricorsivamente
+         * in modo da poter esplorare tutte e 4 le direzioni attorno all P. Ovviamente, devo impostare la nuova posizione del giocatore
+         * nella cella attuale
+         */
+        if (x-1 >= 0)                                               //Controllo se la cella in posizione x+1 (sopra) esiste
+            if (labirinto[x-1][y] != 'W' && !matrice[x-1][y]) {     //Controllo se in quella cella c'è un muro ed è stata esplorata
+                matrice[x][y] = true;                               //Contrassegno la cella attuale come "visitata" e passo a quella successiva
+                risolviLabirinto(labirinto, matrice, x-1, y);    //Esploro sopra
             }
 
-            /* Passo ricorsivo - se la posizione attuale del labirinto è una cella vuota, ri-eseguo questo stesso metodo ricorsivamente
-             * in modo da poter esplorare tutte e 4 le direzioni attorno all P. Ovviamente, devo impostare la nuova posizione del giocatore
-             * nella cella attuale
-             */
-            if (x-1 >= 0)
-                if (labirinto[x-1][y] == '-' && !matrice[x-1][y]) {
-                    matrice[x][y] = true;
-                    risolviLabirinto(labirinto, matrice, x-1, y);    //Esploro sopra
-                }
+        if (y+1 < labirinto[0].length)
+            if (labirinto[x][y+1] != 'W' && !matrice[x][y+1]) {
+                matrice[x][y] = true;
+                risolviLabirinto(labirinto, matrice, x, y+1);    //Esploro a dx
+            }
 
-            if (y+1 < labirinto[0].length)
-                if (labirinto[x][y+1] == '-' && !matrice[x][y+1]) {
-                    matrice[x][y] = true;
-                    risolviLabirinto(labirinto, matrice, x, y+1);    //Esploro a dx
-                }
+        if (x+1 < labirinto.length)
+            if (labirinto[x+1][y] != 'W' && !matrice[x+1][y]) {
+                matrice[x][y] = true;
+                risolviLabirinto(labirinto, matrice, x+1, y);    //Esploro sotto
+            }
 
-            if (x+1 < labirinto.length)
-                if (labirinto[x+1][y] == '-' && !matrice[x+1][y]) {
-                    matrice[x][y] = true;
-                    risolviLabirinto(labirinto, matrice, x+1, y);    //Esploro sotto
-                }
-
-            if (y-1 >= 0)
-                if (labirinto[x][y-1] == '-' && !matrice[x][y-1]) {
-                    matrice[x][y] = true;
-                    risolviLabirinto(labirinto, matrice, x, y-1);    //Esploro a sx
-                }
-
-//            if (labirinto[x][y] == '-') {
-//                labirinto[x][y] = 'P';
-//                risolviLabirinto(labirinto, x-1, y);    //Esploro sopra
-//                risolviLabirinto(labirinto, x, y+1);    //Esploro a dx
-//                risolviLabirinto(labirinto, x+1, y);    //Esploro sotto
-//                risolviLabirinto(labirinto, x, y-1);    //Esploro a sx
-//            }
-        }
+        if (y-1 >= 0)
+            if (labirinto[x][y-1] != 'W' && !matrice[x][y-1]) {
+                matrice[x][y] = true;
+                risolviLabirinto(labirinto, matrice, x, y-1);    //Esploro a sx
+            }
     }
 }

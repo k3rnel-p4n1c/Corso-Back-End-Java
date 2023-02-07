@@ -1,4 +1,4 @@
-package modulo4.Negozio;
+package modulo4.negozio;
 
 public class Prodotto {
     private String tipo;            //mele, pere, aspirapolveri, ...

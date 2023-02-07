@@ -1,4 +1,4 @@
-package modulo4.Negozio;
+package modulo4.negozio;
 
 import java.util.Arrays;
 

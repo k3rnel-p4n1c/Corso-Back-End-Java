@@ -13,14 +13,13 @@
  * Acquistare uno o più prodotti (ottenendo il totale da pagare)
  * Non deve essere possibile acquistare un prodotto se la quantità rimanente è 0
  */
-package modulo4.Negozio;
+package modulo4.negozio;
 
 import java.util.Random;
 
 public class Main {
-    public int variabile;
-
     public static void main(String[] args) {
+
         Giorno giorno = Main.impostaGiornoDellaSettimanaCasuale();
         Negozio negozio = new Negozio();
         Cliente cliente1 = new Cliente("Mario", 60);

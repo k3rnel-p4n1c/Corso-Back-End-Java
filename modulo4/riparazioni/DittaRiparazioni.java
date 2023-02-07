@@ -90,7 +90,7 @@ public class DittaRiparazioni {
         if (tecnicoEsistente(tecnico)) {                            //Controllo che il tecnico appartenga alla ditta
             for (Riparazione rip : riparazioni)                     //Scorro il vettore delle riparazioni
 
-                if (rip.getTecnico() != null)
+                if (rip.getTecnico() != null)                                     //Controllo se c'è un tecnico nella riparazione i-esima
                     if (rip.getTecnico().getNome().equals(tecnico.getNome())) {   //Trovo la riparazione con il tecnico passato come parametro assegnato
                         rip.setStato(Stato.CONCLUSO);                             //Marco come "concluso" lo stato della riparazione
                         rip.setTecnico(null);                                     //Tolgo il tecnico passato come parametro dalla riparazione

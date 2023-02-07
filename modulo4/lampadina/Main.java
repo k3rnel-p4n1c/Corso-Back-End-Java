@@ -27,12 +27,12 @@ public class Main {
 
         int scelta;
         Scanner scanner = new Scanner(System.in);
-        Lampadina lampadina = new Lampadina();
-        Interruttore interruttore1 = new Interruttore(lampadina);    //Associo la lampadina a questo interruttore
-        Interruttore interruttore2 = new Interruttore(lampadina);    //Associo la stessa lampadina a quest'altro interruttore
+        Lampadina lampadina1 = new Lampadina();
+        Interruttore interruttore1 = new Interruttore(lampadina1);    //Associo la lampadina a questo interruttore
+        Interruttore interruttore2 = new Interruttore(lampadina1);    //Associo la stessa lampadina a quest'altro interruttore
 
-        lampadina.ripristinaAlimentazione();        //Faccio in modo che ci sia corrente nell'impianto (vale per tutte le lampadine)
-        System.out.println(lampadina.getStato());
+        lampadina1.ripristinaAlimentazione();        //Faccio in modo che ci sia corrente nell'impianto (vale per tutte le lampadine)
+        System.out.println(lampadina1.getStato());
 
         do {
             System.out.print("\n0 -> ESCI" +
@@ -43,18 +43,18 @@ public class Main {
 
             if (scelta == 1) {
                 interruttore1.premiInterruttore();
-                System.out.println("\n" +lampadina.getStato());
+                System.out.println("\n" +lampadina1.getStato());
             }
             else if (scelta == 2) {
                 interruttore2.premiInterruttore();
-                System.out.println("\n" +lampadina.getStato());
+                System.out.println("\n" +lampadina1.getStato());
             }
 
         } while (scelta!=0);
 
-        lampadina.interrompiAlimentazione();
-        System.out.println("\n" +lampadina.getStato());
-        lampadina.ripristinaAlimentazione();
-        System.out.println("\n" +lampadina.getStato());
+        lampadina1.interrompiAlimentazione();
+        System.out.println("\n" +lampadina1.getStato());
+        lampadina1.ripristinaAlimentazione();
+        System.out.println("\n" +lampadina1.getStato());
     }
 }

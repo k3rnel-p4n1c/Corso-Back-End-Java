@@ -1,7 +1,11 @@
 package modulo4.lampadina;
 
-//Non ha senso dichiararlo all'interno della classe Lampadina
-enum Stato {ACCESA, SPENTA, ROTTA}     //Definisce lo stato della lampadina
+/* Non ha senso dichiararlo all'interno della classe Lampadina. Ha senso andarla a dichiarare in una classe apposita, come segue:
+ *  public enum Stato {
+ *     ACCESA, SPENTA, ROTTA
+ * }
+ */
+enum Stato {ACCESA, SPENTA, ROTTA, ERA_ACCESA}     //Definisce lo stato della lampadina
 
 public class Lampadina {
     private Stato stato;               //"accesa", "spenta", "rotta"
@@ -29,7 +33,7 @@ public class Lampadina {
             if (numero_click == 5)
                 stato = Stato.ROTTA;
             else {
-                if (stato.equals(Stato.SPENTA))
+                if (stato == Stato.SPENTA)
                     stato = Stato.ACCESA;
                 else
                     stato = Stato.SPENTA;
@@ -40,7 +44,7 @@ public class Lampadina {
     public void interrompiAlimentazione() {
         corrente = false;
 
-        if (stato.equals(Stato.ACCESA))
+        if (stato == Stato.ACCESA)
             riaccendere_lampadina = true;
 
         stato = Stato.SPENTA;

@@ -88,10 +88,10 @@ public class Combattimento {
         if (hp1<=0)
             System.out.println("Il torneo è stato vinto da " +personaggio2.getNome()+ " con le seguenti statistiche:" +
                     "\nAttacchi andati a segno: " +attacchi2_a_segno+ "\nAttacchi non andati a segno: " +attacchi2_mancati+
-                    "\nAttacchi subiti: " +attacchi1_a_segno);
+                    "\nAttacchi subiti: " +attacchi1_a_segno+ "\nAttacchi schivati: " +attacchi1_mancati);
         else
             System.out.println("Il torneo è stato vinto da " +personaggio1.getNome()+ " con le seguenti statistiche:" +
                     "\nAttacchi andati a segno: " +attacchi1_a_segno+ "\nAttacchi non andati a segno: " +attacchi1_mancati+
-                    "\nAttacchi subiti: " +attacchi2_a_segno);
+                    "\nAttacchi subiti: " +attacchi2_a_segno+ "\nAttacchi schivati: " +attacchi2_mancati);
     }
 }

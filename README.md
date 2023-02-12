@@ -1,4 +1,4 @@
-# Corso-Back-End-Java
+# Corso Back-End Java
 Repository contenente il codice risolutivo degli esercizi proposti durante il corso
 
 [![forks](https://img.shields.io/badge/forks-1-red)](https://github.com/k3rnel-p4n1c/Corso-Back-End-Java/network/members)

@@ -71,7 +71,6 @@ public class Main {
         Personaggio vegeta = new Personaggio("Vegeta", 95, 9, Razza.SAIYAN, combo_vegeta);
 
         //Inizio il combattimento
-        Combattimento combattimento = new Combattimento();
-        combattimento.combatti(goku, vegeta);
+        Combattimento.combatti(goku, vegeta);
     }
 }

@@ -7,11 +7,12 @@ public class Combattimento {
     /**
      * Questo metodo permette di far scontare due personaggi tra di loro, fornendo in stampa un log che riporta tutti gli avvenimenti.
      * Dato che certi attacchi potrebbero non andare a segno, per ragioni di pulizia dell'output ho deciso di non stampare quando ciò
-     * accade ma di stampare solamente gli attacchi che vanno a segno
+     * accade ma di stampare solamente gli attacchi che vanno a segno. Questo metodo è statico, poiché non è necessario istanziare un
+     * oggetto di tipo "Combattimento" (il combattimento è sempre uguale per tutti i personaggi)
      * @param personaggio1 personaggio da far combattere
      * @param personaggio2 personaggio da far combattere
      */
-    public void combatti(Personaggio personaggio1, Personaggio personaggio2) {
+    public static void combatti(Personaggio personaggio1, Personaggio personaggio2) {
         Random random = new Random();
 
         //Uso queste due variabili per memorizzare gli hp, senza intaccare quelli del personaggio

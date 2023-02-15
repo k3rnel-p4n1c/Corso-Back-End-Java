@@ -75,18 +75,16 @@ public class Personaggio implements Comparable<Personaggio> {
      */
     @Override
     public int compareTo(Personaggio personaggio) {
-        //Controllo caso mai l'oggetto passato come parametro non sia nullo
-        if (personaggio != null)
-            /* L'espressione "return Integer.compare(this.hp, personaggio.hp)" restituisce un valore intero che indica se l'attributo
-             * hp dell'oggetto corrente è minore, uguale o maggiore dell'attributo hp dell'oggetto passato come parametro. Il metodo
-             * Integer.compare è un metodo statico della classe Integer che confronta due valori interi e restituisce un valore intero
-             * seguendo questa convenzione:
-             * Se il primo valore è minore del secondo, il metodo restituisce un valore negativo
-             * Se i due valori sono uguali, il metodo restituisce zero.
-             * Se il primo valore è maggiore del secondo, il metodo restituisce un valore positivo
-             */
-            return Integer.compare(this.hp, personaggio.hp);
-        else
-            return -100;    //Nel caso in cui l'oggetto sia nullo, restituisce -100
+        /* L'espressione "return Integer.compare(this.hp, personaggio.hp)" restituisce un valore intero che indica se l'attributo
+         * hp dell'oggetto corrente è minore, uguale o maggiore dell'attributo hp dell'oggetto passato come parametro. Il metodo
+         * Integer.compare è un metodo statico della classe Integer che confronta due valori interi e restituisce un valore intero
+         * seguendo questa convenzione:
+         * Se il primo valore è minore del secondo, il metodo restituisce un valore negativo
+         * Se i due valori sono uguali, il metodo restituisce zero.
+         * Se il primo valore è maggiore del secondo, il metodo restituisce un valore positivo
+         * In questo modo è possibile utilizzare il metodo sort della classe Arrays o Collections per ordinare un array o una lista di
+         * oggetti Personaggio in base agli hp
+         */
+        return Integer.compare(this.hp, personaggio.hp);
     }
 }

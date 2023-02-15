@@ -33,6 +33,10 @@
  */
 package modulo6.dragonball;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+
 public class Main {
     public static void main(String[] args) {
 
@@ -69,6 +73,32 @@ public class Main {
         Personaggio freezer = new Personaggio("Freezer", 90, 7, Razza.ALIENO, combo_freezer);
         Personaggio crilin = new Personaggio("Crilin", 50, 2, Razza.UMANO, combo_crilin);
         Personaggio vegeta = new Personaggio("Vegeta", 95, 9, Razza.SAIYAN, combo_vegeta);
+
+        //Inserisco in maniera disordinata i personaggi in un arraylist
+        ArrayList<Personaggio> personaggi = new ArrayList<>();
+        personaggi.add(goku);
+        personaggi.add(cell);
+        personaggi.add(freezer);
+        personaggi.add(crilin);
+        personaggi.add(vegeta);
+
+        //Inserisco in maniera disordinata i personaggi in un vettore
+        Personaggio[] personaggis = {goku, cell, freezer, crilin, vegeta};
+
+        //Stampo prima l'arraylist disordinato, poi lo ordino (l'ordinamento farà riferimento al metodo compareTo implementato in Personaggio)
+        System.out.println(personaggi + "\n\n");
+        Collections.sort(personaggi);
+        //personaggi.sort(Personaggio::compareTo);      //Questo è un metodo alternativo per fare la stessa cosa
+        System.out.println(personaggi+ "\n\n");
+
+        //Stampo tutti i personaggi del vettore (disordinati), poi li ordino e li stampo ordinati
+        for (Personaggio personaggio : personaggis)
+            System.out.println(personaggio+ "\n");
+
+        Arrays.sort(personaggis);       //Anche questo ordinamento fa riferimento al metodo compareTo implementato nella classe Personaggio
+
+        for (Personaggio personaggio : personaggis)
+            System.out.println(personaggio+ "\n");
 
         //Inizio il combattimento
         Combattimento.combatti(goku, vegeta);

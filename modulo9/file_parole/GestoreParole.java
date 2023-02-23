@@ -109,28 +109,35 @@ public class GestoreParole {
                 //In questo ciclo, matcher1 cercherà una corrispondenza in tutte le parole memorizzate in "riga"
                 while (matcher1.find()) {
                     temp = matcher1.group();    //Assegno la corrispondenza (se esiste) alla variabile temp
-                    substring = temp.substring(temp.length()-3);    //Mi prendo il dittongo finale (chiave della HashMap)
 
-                    //Se la chiave già esiste, accedo all'arraylist per aggiungere un nuovo valore (parole) che contiene il dittongo
-                    if (rime.containsKey(substring))
-                        rime.get(substring).add(temp);
-                    else {                                               //Altrimenti aggiungo direttamente la coppia chiave-valore
-                        arraylist.add(temp);
-                        rime.put(substring, arraylist);
-                        arraylist = new ArrayList<>(0);     //Pulisco l'arraylist
+                    //Controllo che la parola abbia una lunghezza superiore a 3 (perché il matcher1 controlla vo-con-vo)
+                    if (temp.length() > 3) {
+                        substring = temp.substring(temp.length()-3);    //Mi prendo il dittongo finale (chiave della HashMap)
+
+                        //Se la chiave già esiste, accedo all'arraylist per aggiungere un nuovo valore (parole) che contiene il dittongo
+                        if (rime.containsKey(substring))
+                            rime.get(substring).add(temp);
+                        else {                                               //Altrimenti aggiungo direttamente la coppia chiave-valore
+                            arraylist.add(temp);
+                            rime.put(substring, arraylist);
+                            arraylist = new ArrayList<>(0);     //Pulisco l'arraylist
+                        }
                     }
                 }
 
                 while (matcher2.find()) {
                     temp = matcher2.group();
-                    substring = temp.substring(temp.length()-4);
 
-                    if (rime.containsKey(substring))
-                        rime.get(substring).add(temp);
-                    else {
-                        arraylist.add(temp);
-                        rime.put(substring, arraylist);
-                        arraylist = new ArrayList<>(0);
+                    if (temp.length() > 4) {
+                        substring = temp.substring(temp.length()-4);
+
+                        if (rime.containsKey(substring))
+                            rime.get(substring).add(temp);
+                        else {
+                            arraylist.add(temp);
+                            rime.put(substring, arraylist);
+                            arraylist = new ArrayList<>(0);
+                        }
                     }
                 }
             }
